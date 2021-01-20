@@ -8,11 +8,14 @@ features of the the merkle tree is included in its description.
 import hashlib
 
 
-class MerkleTree:
-    """
-    This Merkle tree should be able to do the following things:
+class Block:
+    def __init__(self, blockheader, blockbody):
+        # todo Init header and body based on information give in one go.
+        self.blockheader = blockheader
+        self.blockbody = blockbody
 
-    """
+
+class BlockHeader:
     def __init__(self,
                  number_of_transactions=0,
                  height=0,
@@ -26,6 +29,7 @@ class MerkleTree:
                  version=0,
                  nonce=0,
                  next_block=0):
+        # todo Delete those unnecessary arguments
         self.number_of_transactions = number_of_transactions
         self.height = height
         self.block_reward = block_reward
@@ -56,6 +60,26 @@ class MerkleTree:
         return temp
 
 
+class BlockBody:
+    def __init__(self):
+        # todo Init the block body.
+        pass
+
+
+class MerkleTree:
+    def __init__(self, value=None):
+        # todo give the values of the merkle tree from the leaf
+        self.left_child = MerkleTree()
+        self.right_child = MerkleTree()
+        if value is None:
+            self.value = self.left_child + self.right_child
+        else:
+            self.value = sha256(value)
+
+    def __add__(self, other):
+        return sha256(self.left_child.value + self.right_child.value)
+
+
 def sha256(data):
     """
     The following function does a SHA 256 function to the data and return the value.
@@ -68,5 +92,4 @@ def sha256(data):
 
 
 if __name__ == '__main__':
-    test = MerkleTree()
-    print(test)
+    pass
