@@ -95,5 +95,12 @@ def sha256(data):
     return temp.hexdigest()
 
 
+def read_txt(file_name):
+    """
+    :param file_name:
+    :return:
+    """
+
+
 if __name__ == '__main__':
     pass
